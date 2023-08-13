@@ -37,4 +37,18 @@ public class ContentCollectionRepository {
     public void save(Content content) {
         contentList.add(content);
     }
+
+    public boolean existsById(Integer id) {
+        return contentList.stream().filter(c -> c.id().equals(id)).count() == 1;
+    }
+
+    public void updateContent(Content content, Integer id) {
+        for(int i=0;i<=contentList.size();i++){
+            Content c = contentList.get(i);
+            if(c.id().equals(id)){
+                contentList.set(i, content);
+                return;
+            }
+        }
+    }
 }
